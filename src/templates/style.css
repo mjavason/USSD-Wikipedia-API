@@ -1,0 +1,53 @@
+/* Reset some default styles for email clients */
+body,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+/* Define styles for the email container */
+.email-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f7f7f7;
+}
+
+/* Style the header section */
+.header {
+  text-align: center;
+  background-color: #3498db;
+  padding: 20px;
+}
+
+.header h1 {
+  color: #fff;
+  font-size: 24px;
+}
+
+/* Style the main content section */
+.content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.content h2 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+/* Style the button */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+/* Add some space between elements */
+.spacer {
+  margin-top: 20px;
+}
