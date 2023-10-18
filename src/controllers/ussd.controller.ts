@@ -68,6 +68,8 @@ class Controller {
       case '4':
         return ussdDevSection(res);
       case '4*1':
+        return ussdTextCountLimit(res);
+      case '4*1*1':
         return ussdTextCountLimitHandler(res, text);
 
       default:
