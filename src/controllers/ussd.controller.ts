@@ -30,7 +30,24 @@ function ussdMainMenu(res: Response) {
   1. My Account
   2. My Phone Number
   3. Wiki Summary
+  4. Developer Section
   `);
+}
+
+function ussdDevSection(res: Response) {
+  res.send(`CON This is the dev hangout, made for testing and experimentation. Enjoy!
+  1. USSD Text Count Limit
+  `);
+}
+
+function ussdTextCountLimit(res: Response) {
+  res.send(
+    `CON Enter as much text as you can. I'll return the number of characters that went through.`,
+  );
+}
+
+function ussdTextCountLimitHandler(res: Response, text: string) {
+  res.send(`END ${text.length} characters received.`);
 }
 
 class Controller {
@@ -48,6 +65,10 @@ class Controller {
         return ussdMyAccount(res, sessionId, phoneNumber, networkCode);
       case '2':
         return ussdPhoneNumber(res, phoneNumber);
+      case '4':
+        return ussdDevSection(res);
+      case '4*1':
+        return ussdTextCountLimitHandler(res, text);
 
       default:
         return ussdMainMenu(res);
