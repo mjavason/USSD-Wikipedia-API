@@ -2,18 +2,33 @@ import { Request, Response } from 'express';
 import { NETWORK_PROVIDER_PREFIX_MAP } from '../constants';
 import { scrapeController } from './scrape.controller';
 
+/**
+ * Gets the network provider based on the prefix of a phone number.
+ *
+ * @param {string} phoneNumber - The phone number to determine the network provider for.
+ * @returns {string} The network provider's name or 'UNKNOWN' if not found.
+ */
 function getNetworkProvider(phoneNumber: string) {
   const prefixMap: { [key: string]: string } = NETWORK_PROVIDER_PREFIX_MAP;
 
-  const cleanedNumber = phoneNumber.replace(/\D/g, ''); // Remove non-numeric characters
-  const prefix = cleanedNumber.slice(0, 6); // Extract the first 6 digits
+  // Remove non-numeric characters
+  const cleanedNumber = phoneNumber.replace(/\D/g, '');
+
+  // Extract the first 6 digits
+  const prefix = cleanedNumber.slice(0, 6);
 
   return prefixMap[prefix] || 'UNKNOWN';
 }
 
+/**
+ * Processes a USSD message to remove '0' and its preceding valid character(s).
+ *
+ * @param {string} message - The USSD message to process.
+ * @returns {string} The processed USSD message.
+ */
 function processUSSDMessage(message: string) {
   const parts = message.split('*');
-  const result: string[] = [];
+  const result = [];
 
   for (let i = 0; i < parts.length; i++) {
     if (parts[i] === '0' && result.length > 0) {
@@ -30,7 +45,7 @@ function ussdMyAccount(res: Response, sessionId: string, phoneNumber: string, ne
   const networkProvider = getNetworkProvider(phoneNumber);
   const id = sessionId.substring(sessionId.length, sessionId.length - 4);
 
-  res.send(`END This is a free account.
+  res.send(`CON This is a free account.
   Phone Number: ${phoneNumber}
   Network Provider: ${networkProvider}
   Session ID: xxxxxx${id}.
@@ -45,6 +60,7 @@ function ussdMainMenu(res: Response) {
   1. My Account
   2. Wiki Summary
   3. Developer Section
+  *. Exit
   `);
 }
 
@@ -92,6 +108,10 @@ function ussdUnknownEntry(res: Response) {
   `);
 }
 
+function ussdExit(res: Response) {
+  res.send(`END Goodbye, until next time!.`);
+}
+
 class Controller {
   async default(req: Request, res: Response) {
     console.log(req.body);
@@ -111,6 +131,8 @@ class Controller {
         return ussdWikiSummary(res);
       case '3':
         return ussdDevSection(res);
+      case '*':
+        return ussdExit(res);
       case '3*1':
         return ussdTextCountLimit(res);
 
