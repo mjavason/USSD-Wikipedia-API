@@ -48,7 +48,7 @@ function ussdMyAccount(res: Response, sessionId: string, phoneNumber: string, ne
   res.send(`CON This is a free account.
   Phone Number: ${phoneNumber}
   Network Provider: ${networkProvider}
-  Session ID: xxxxxx${id}.
+  Session ID: xxxxxx${id}
   Network Code: ${networkCode}
   
   0. Go back`);
@@ -72,7 +72,8 @@ function ussdWikiSummary(res: Response) {
 async function ussdWikiSummaryHandler(res: Response, subject: string) {
   const summary = await scrapeController.getSummary(subject);
 
-  if (!summary || summary.substring(summary.length, summary.length - 12) === 'may refer to') return res.send(`END '${subject}' subject not found on wikipedia.`);
+  if (!summary || summary.substring(summary.length, summary.length - 12) === 'may refer to')
+    return res.send(`END '${subject}' subject not found on wikipedia.`);
 
   res.send(`CON ${summary}
   
