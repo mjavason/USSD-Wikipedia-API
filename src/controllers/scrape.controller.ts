@@ -52,7 +52,7 @@ class Controller {
 
   async default(req: Request, res: Response) {
     console.log(req);
-    res.send(`Welcome to the Wikipedia USSD Service. We'll be with you shortly`);
+    res.send(`Welcome to the Wikipedia USSD Service. We'll be with you shortly.`);
   }
 }
 
