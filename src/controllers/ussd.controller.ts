@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { NETWORK_PROVIDER_PREFIX_MAP } from '../constants';
+import startsWith from '../utils/startsWith';
 
 function getNetworkProvider(phoneNumber: string) {
   const prefixMap: { [key: string]: string } = NETWORK_PROVIDER_PREFIX_MAP;
@@ -50,6 +51,10 @@ function ussdTextCountLimitHandler(res: Response, text: string) {
   res.send(`END ${text.length} characters received.`);
 }
 
+function ussdUnknownEntry(res: Response) {
+  res.send(`END Unknown command entered. Please try again.`);
+}
+
 class Controller {
   async default(req: Request, res: Response) {
     console.log(req.body);
@@ -61,6 +66,8 @@ class Controller {
     const networkCode = req.body.networkCode;
 
     switch (text) {
+      case '':
+        return ussdMainMenu(res);
       case '1':
         return ussdMyAccount(res, sessionId, phoneNumber, networkCode);
       case '2':
@@ -69,11 +76,11 @@ class Controller {
         return ussdDevSection(res);
       case '4*1':
         return ussdTextCountLimit(res);
-      case '4*1*1':
-        return ussdTextCountLimitHandler(res, text);
+      case startsWith('4*1*', text):
+        return ussdTextCountLimitHandler(res, text.slice(4));
 
       default:
-        return ussdMainMenu(res);
+        return ussdUnknownEntry(res);
     }
   }
 }
