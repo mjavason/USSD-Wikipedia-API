@@ -86,6 +86,10 @@ Imagine a user wants to learn about "Pepsi" They will use their mobile phone to 
 4. **Processing Request**: The USSD service processes the user's input and communicates with the USSD Wikipedia API.
 
 5. **Result**: The user receives a brief summary on the topic "Pepsi".
+   ```
+   Pepsi is a carbonated soft drink manufactured by PepsiCo. Originally created and developed in 1893 by Caleb Bradham and introduced as Brads Drink, it was renamed as PepsiCola in 1898, and then shortened to Pepsi in 1961. In 2022, it was the second most valuable soft drink brand worldwide, behind CocaCola.
+
+   0. Go back
 
 This sample scenario demonstrates how users can easily access Wikipedia topic summaries via USSD text menus, making knowledge readily available on their mobile phones without an internet connection.
 

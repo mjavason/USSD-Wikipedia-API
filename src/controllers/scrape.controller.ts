@@ -31,8 +31,15 @@ class Controller {
         const cleanSummary = removeSpecialCharacters(removeNewlines(summary));
 
         if (cleanSummary.length <= 420) {
-          // If the summary is within the character limit, return it as is
-          return cleanSummary;
+          const lastFullStopIndex = cleanSummary.lastIndexOf('.', cleanSummary.length);
+
+          if (lastFullStopIndex > 0) {
+            // Slice the summary up to the last full stop within the character limit
+            return cleanSummary.slice(0, lastFullStopIndex + 1);
+          } else {
+            // If no full stop is found, return the first 420 characters
+            return cleanSummary.slice(0, cleanSummary.length);
+          }
         } else {
           // Find the last full stop (period) within the first 420 characters
           const lastFullStopIndex = cleanSummary.lastIndexOf('.', 420);
