@@ -73,32 +73,18 @@ Imagine a user wants to learn about "Space Exploration." They will use their mob
 2. **Welcome Message**: The user receives a welcome message:
 
    ```
-   Welcome to USSD Wikipedia!
-   Please enter the topic you'd like to learn about or type '0' to exit.
-   ```
+   Welcome to the Wikipedia USSD Service
 
-3. **User Input**: The user enters `Space Exploration` as the topic of interest.
+  1. My Account
+  2. My Phone Number
+  3. Wiki Summary
+  4. Developer Section   ```
+
+3. **User Input**: The user chooses 'Wiki Summary' and enters `Pepsi` as the topic of interest.
 
 4. **Processing Request**: The USSD service processes the user's input and communicates with the USSD Wikipedia API.
 
-5. **Result**: The user receives a summary on the topic "Space Exploration" through a series of text menus. The API retrieves information from Wikipedia and presents it step by step:
-
-   ```
-   - Space Exploration -
-   1. Introduction
-   2. History
-   3. Notable Missions
-   4. Future of Space Exploration
-   5. Exit
-
-   Reply with the corresponding number to learn more or '5' to exit.
-   ```
-
-6. **User Interaction**: The user can reply with the number corresponding to their choice to get more detailed information. For example, if they reply with '1', they will receive an introduction to Space Exploration.
-
-7. **User Exploration**: The user can navigate through various menu options, exploring the topic at their own pace.
-
-8. **Exiting**: When the user is done, they can type '5' to exit the USSD service.
+5. **Result**: The user receives a brief summary on the topic "Pepsi".
 
 This sample scenario demonstrates how users can easily access Wikipedia topic summaries via USSD text menus, making knowledge readily available on their mobile phones without an internet connection.
 
@@ -116,4 +102,3 @@ Contributions to the USSD Wikipedia API are highly welcomed. To contribute:
 
 5. Submit a pull request with a clear description of your modifications.
 
-Your contributions will help make knowledge more accessible to a broader audience.
