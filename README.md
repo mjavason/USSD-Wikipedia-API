@@ -64,7 +64,7 @@ The USSD Wikipedia API will be accessible at `http://localhost:5000` by default.
 ## Sample Scenario
 
 **User Scenario**:
-Imagine a user wants to learn about "Space Exploration." They will use their mobile phone to access information about this topic using USSD.
+Imagine a user wants to learn about "Pepsi" They will use their mobile phone to access information about this topic using USSD.
 
 **USSD Code Flow**:
 
