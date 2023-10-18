@@ -30,15 +30,15 @@ class Controller {
       if (summary) {
         const cleanSummary = removeSpecialCharacters(removeNewlines(summary));
 
-        // Find the position of '[1]' in the summary
-        const index = cleanSummary.indexOf('[1]');
-        if (index !== -1) {
-          // If '[1]' is found, extract the summary up to that point
-          const truncatedSummary = cleanSummary.slice(0, index);
+        // Limit the summary to 420 characters
+        const truncatedSummary = cleanSummary.slice(0, 420);
 
-          return truncatedSummary;
+        // Check if the summary was truncated
+        if (cleanSummary.length > 420) {
+          // Add parentheses if the summary was truncated
+          return `${truncatedSummary} (...)`;
         } else {
-          return cleanSummary;
+          return truncatedSummary;
         }
       } else {
         return;
