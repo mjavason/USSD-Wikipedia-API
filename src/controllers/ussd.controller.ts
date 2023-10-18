@@ -16,13 +16,10 @@ function ussdMyAccount(res: Response, sessionId: string, phoneNumber: string, ne
   const id = sessionId.substring(sessionId.length, sessionId.length - 4);
 
   res.send(`END This is a free account.
+  Phone Number: ${phoneNumber}
   Network Provider: ${networkProvider}
   Session ID: xxxxxx${id}.
   Network Code: ${networkCode}`);
-}
-
-function ussdPhoneNumber(res: Response, phoneNumber: string) {
-  res.send(`END ${phoneNumber}`);
 }
 
 function ussdMainMenu(res: Response) {
@@ -83,18 +80,16 @@ class Controller {
       case '1':
         return ussdMyAccount(res, sessionId, phoneNumber, networkCode);
       case '2':
-        return ussdPhoneNumber(res, phoneNumber);
-      case '3':
         return ussdWikiSummary(res);
-      case '4':
+      case '3':
         return ussdDevSection(res);
-      case '4*1':
+      case '3*1':
         return ussdTextCountLimit(res);
 
       default:
-        if (text.startsWith('3*')) {
+        if (text.startsWith('2*')) {
           return await ussdWikiSummaryHandler(res, text.slice(2));
-        } else if (text.startsWith('4*1*')) {
+        } else if (text.startsWith('3*1*')) {
           return ussdTextCountLimitHandler(res, text.slice(4));
         }
         return ussdUnknownEntry(res);
