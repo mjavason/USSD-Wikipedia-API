@@ -44,7 +44,7 @@ async function ussdWikiSummaryHandler(res: Response, subject: string) {
 
   if (!summary) return res.send(`END '${subject}' subject not found on wikipedia.`);
 
-  res.send(`${summary}`);
+  res.send(`END ${summary}`);
 }
 
 function ussdDevSection(res: Response) {
