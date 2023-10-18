@@ -60,14 +60,13 @@ function ussdMainMenu(res: Response) {
   1. My Account
   2. Wiki Summary
   3. Developer Section
-  *. Exit
-  `);
+  *. Exit`);
 }
 
 function ussdWikiSummary(res: Response) {
   res.send(`CON Enter a subject and we'll query the wikipedia website for a summary.
-  0. Go back
-  `);
+
+  0. Go back`);
 }
 
 async function ussdWikiSummaryHandler(res: Response, subject: string) {
@@ -77,33 +76,34 @@ async function ussdWikiSummaryHandler(res: Response, subject: string) {
 
   res.send(`CON ${summary}
   
-  0. Go back
-  `);
+  0. Go back`);
 }
 
 function ussdDevSection(res: Response) {
   res.send(`CON This is the dev hangout, made for testing and experimentation. Enjoy!
+
   1. USSD Text Count Limit
-  0. Go back
-  `);
+  0. Go back`);
 }
 
 function ussdTextCountLimit(res: Response) {
   res.send(
     `CON Enter as much text as you can. I'll return the number of characters that went through.
-    0. Go back
-    `,
+
+    0. Go back`,
   );
 }
 
 function ussdTextCountLimitHandler(res: Response, text: string) {
   res.send(`CON ${text.length} characters received.
+
   0. Go back
   `);
 }
 
 function ussdUnknownEntry(res: Response) {
   res.send(`CON Unknown command entered. Please try again.
+
   0. Go back
   `);
 }
