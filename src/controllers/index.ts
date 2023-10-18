@@ -4,4 +4,4 @@
 // export { whatever } from './whatever';
 
 export { mailController } from './mail.controller';
-export { telegramController } from './telegram.controller';
+export { scrapeController } from './scrape.controller';

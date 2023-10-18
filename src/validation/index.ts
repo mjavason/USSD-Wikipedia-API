@@ -3,4 +3,4 @@
 // export = './whatever'
 // export { whatever } from './whatever';
 
-export { telegramValidation } from './telegram.validation';
+export { scrapeValidation } from './scraper.validation';

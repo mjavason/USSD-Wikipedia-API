@@ -1,8 +1,7 @@
 import express from 'express';
 const router = express.Router();
-import { telegramValidation } from '../../../validation';
-import { telegramController } from '../../../controllers';
+import ussdRouter from './ussd.router';
 
-router.get('/', telegramController.default);
+router.use(ussdRouter);
 
 export default router;
