@@ -47,7 +47,6 @@ function ussdTextCountLimit(res: Response) {
 }
 
 function ussdTextCountLimitHandler(res: Response, text: string) {
-  console.log(text);
   res.send(`END ${text.length} characters received.`);
 }
 
