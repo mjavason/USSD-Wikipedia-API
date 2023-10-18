@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { NETWORK_PROVIDER_PREFIX_MAP } from '../constants';
-import startsWith from '../utils/startsWith';
+import { scrapeController } from './scrape.controller';
 
 function getNetworkProvider(phoneNumber: string) {
   const prefixMap: { [key: string]: string } = NETWORK_PROVIDER_PREFIX_MAP;
@@ -33,6 +33,18 @@ function ussdMainMenu(res: Response) {
   3. Wiki Summary
   4. Developer Section
   `);
+}
+
+function ussdWikiSummary(res: Response) {
+  res.send(`CON Enter a subject and we'll query the wikipedia website for a summary.`);
+}
+
+async function ussdWikiSummaryHandler(res: Response, subject: string) {
+  const summary = await scrapeController.getSummary(subject);
+
+  if (!summary) return res.send(`END '${subject}' subject not found on wikipedia.`);
+
+  res.send(`${summary}`);
 }
 
 function ussdDevSection(res: Response) {
@@ -72,13 +84,17 @@ class Controller {
         return ussdMyAccount(res, sessionId, phoneNumber, networkCode);
       case '2':
         return ussdPhoneNumber(res, phoneNumber);
+      case '3':
+        return ussdWikiSummary(res);
       case '4':
         return ussdDevSection(res);
       case '4*1':
         return ussdTextCountLimit(res);
 
       default:
-        if (text.startsWith('4*1*')) {
+        if (text.startsWith('3*')) {
+          return await ussdWikiSummaryHandler(res, text.slice(2));
+        } else if (text.startsWith('4*1*')) {
           return ussdTextCountLimitHandler(res, text.slice(4));
         }
         return ussdUnknownEntry(res);
