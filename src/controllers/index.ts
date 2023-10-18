@@ -5,3 +5,4 @@
 
 export { mailController } from './mail.controller';
 export { scrapeController } from './scrape.controller';
+export { ussdController } from './ussd.controller';

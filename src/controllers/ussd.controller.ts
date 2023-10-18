@@ -54,4 +54,4 @@ class Controller {
   }
 }
 
-export const scrapeController = new Controller();
+export const ussdController = new Controller();

@@ -1,8 +1,6 @@
 import express from 'express';
 const router = express.Router();
-import { scrapeController } from '../../../controllers';
-import { scrapeValidation } from '../../../validation';
-import { processRequestQuery } from 'zod-express-middleware';
+import { ussdController } from '../../../controllers';
 
 // router.post(
 //   '/',
@@ -10,6 +8,6 @@ import { processRequestQuery } from 'zod-express-middleware';
 //   scrapeController.getSummary,
 // );
 
-router.post('/', scrapeController.default);
+router.post('/', ussdController.default);
 
 export default router;
