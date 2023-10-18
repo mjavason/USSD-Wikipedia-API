@@ -5,17 +5,17 @@ function getNetworkProvider(phoneNumber: string) {
   const prefixMap: { [key: string]: string } = NETWORK_PROVIDER_PREFIX_MAP;
 
   const cleanedNumber = phoneNumber.replace(/\D/g, ''); // Remove non-numeric characters
-  const prefix = cleanedNumber.slice(0, 6); // Extract the first 8 digits
+  const prefix = cleanedNumber.slice(0, 6); // Extract the first 6 digits
 
   return prefixMap[prefix] || 'UNKNOWN';
 }
 
 function ussdMyAccount(res: Response, sessionId: string, phoneNumber: string, networkCode: string) {
   const networkProvider = getNetworkProvider(phoneNumber);
-  const id = sessionId.substring(sessionId.length, -4);
+  const id = sessionId.substring(sessionId.length, sessionId.length - 4);
 
   res.send(`END This is a free account.
-  You are on the ${networkProvider} network.
+  Network Provider: ${networkProvider}
   Session ID: xxxxxx${id}.
   Network Code: ${networkCode}`);
 }
@@ -26,7 +26,7 @@ function ussdPhoneNumber(res: Response, phoneNumber: string) {
 
 function ussdMainMenu(res: Response) {
   res.send(`CON Welcome to the Wikipedia USSD Service.
-  
+
   1. My Account
   2. My Phone Number
   3. Wiki Summary
