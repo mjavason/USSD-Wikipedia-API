@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { load } from 'cheerio';
 import { decode } from 'html-entities';
-import { SuccessResponse, NotFoundResponse, InternalErrorResponse } from '../helpers/response';
 import ApiService from '../services/api.service';
+import removeSpecialCharacters from '../utils/removeSpecialCharacters';
 
 function removeNewlines(inputString: string) {
   // Use the replace method with a regular expression to replace all newline characters with an empty string
@@ -28,7 +28,7 @@ class Controller {
       );
 
       if (summary) {
-        const cleanSummary = removeNewlines(summary);
+        const cleanSummary = removeSpecialCharacters(removeNewlines(summary));
 
         // Find the position of '[1]' in the summary
         const index = cleanSummary.indexOf('[1]');
