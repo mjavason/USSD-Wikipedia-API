@@ -26,6 +26,7 @@ function ussdPhoneNumber(res: Response, phoneNumber: string) {
 
 function ussdMainMenu(res: Response) {
   res.send(`CON Welcome to the Wikipedia USSD Service.
+  
   1. My Account
   2. My Phone Number
   3. Wiki Summary
