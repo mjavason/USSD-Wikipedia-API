@@ -12,8 +12,7 @@ function removeNewlines(inputString: string) {
 }
 
 class Controller {
-  async getSummary(req: Request, res: Response) {
-    const subject = req.query.subject as string;
+  async getSummary(subject: string) {
     const url = `https://en.wikipedia.org/wiki/${encodeURIComponent(subject)}`;
     const wikiApiService = new ApiService(url);
 
@@ -37,16 +36,16 @@ class Controller {
           // If '[1]' is found, extract the summary up to that point
           const truncatedSummary = cleanSummary.slice(0, index);
 
-          return SuccessResponse(res, { subject, summary: truncatedSummary });
+          return truncatedSummary;
         } else {
-          return SuccessResponse(res, { subject, summary: cleanSummary });
+          return cleanSummary;
         }
       } else {
-        return NotFoundResponse(res, 'Summary not found for the specified subject.');
+        return;
       }
     } catch (error) {
       console.log(error);
-      return InternalErrorResponse(res, 'An error occurred while fetching the Wikipedia page.');
+      return;
     }
   }
 
