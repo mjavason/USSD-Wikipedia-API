@@ -76,10 +76,11 @@ class Controller {
         return ussdDevSection(res);
       case '4*1':
         return ussdTextCountLimit(res);
-      case startsWith('4*1*', text):
-        return ussdTextCountLimitHandler(res, text.slice(4));
 
       default:
+        if (text.startsWith('4*1*')) {
+          return ussdTextCountLimitHandler(res, text.slice(4));
+        }
         return ussdUnknownEntry(res);
     }
   }
