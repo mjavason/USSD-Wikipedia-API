@@ -2,6 +2,6 @@ import express from 'express';
 const router = express.Router();
 import ussdRouter from './ussd.router';
 
-router.use(ussdRouter);
+router.use('/ussd', ussdRouter);
 
 export default router;
