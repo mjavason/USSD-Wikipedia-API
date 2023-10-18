@@ -73,12 +73,13 @@ Imagine a user wants to learn about "Space Exploration." They will use their mob
 2. **Welcome Message**: The user receives a welcome message:
 
    ```
-   Welcome to the Wikipedia USSD Service
+   Welcome to the Wikipedia USSD Service.
 
-  1. My Account
-  2. My Phone Number
-  3. Wiki Summary
-  4. Developer Section   ```
+   1. My Account
+   2. My Phone Number
+   3. Wiki Summary
+   4. Developer Section   
+  
 
 3. **User Input**: The user chooses 'Wiki Summary' and enters `Pepsi` as the topic of interest.
 
