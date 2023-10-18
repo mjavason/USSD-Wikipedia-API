@@ -30,15 +30,20 @@ class Controller {
       if (summary) {
         const cleanSummary = removeSpecialCharacters(removeNewlines(summary));
 
-        // Limit the summary to 420 characters
-        const truncatedSummary = cleanSummary.slice(0, 420);
-
-        // Check if the summary was truncated
-        if (cleanSummary.length > 420) {
-          // Add parentheses if the summary was truncated
-          return `${truncatedSummary} (...)`;
+        if (cleanSummary.length <= 420) {
+          // If the summary is within the character limit, return it as is
+          return cleanSummary;
         } else {
-          return truncatedSummary;
+          // Find the last full stop (period) within the first 420 characters
+          const lastFullStopIndex = cleanSummary.lastIndexOf('.', 420);
+
+          if (lastFullStopIndex > 0) {
+            // Slice the summary up to the last full stop within the character limit
+            return cleanSummary.slice(0, lastFullStopIndex + 1);
+          } else {
+            // If no full stop is found, return the first 420 characters
+            return cleanSummary.slice(0, 420);
+          }
         }
       } else {
         return;
